@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'cronologia',
+    loadChildren: () => import('./cronologia/cronologia.module').then( m => m.CronologiaPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,20 +1,66 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-segment color="secondary">
+            <ion-segment-button (click)='estado="jornada"'>
+                <ion-icon name="football-outline"></ion-icon>
+                <ion-label>Jornadas</ion-label>
+            </ion-segment-button>
+            <ion-segment-button (click)='estado="clasificacion"'>
+                <ion-icon name="podium"></ion-icon>
+                <ion-label>Clasificacion</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-content *ngIf="estado==='jornada'" >
+        <ion-row>
+            <ion-label class="ion-text-center">Numero Jornadas: {{numeroJornada+1}}</ion-label>
+        </ion-row>
+        <ion-row>
+        <ion-label class="ion-text-center">Fecha: {{fecha.diaSemana}} {{fecha.dia}} </ion-label>
+        </ion-row>
+        <ion-card *ngFor="let partido of getJornadaPosicion(numeroJornada).listaPartidos" (click)="verCronologia(partido)">
+            <ion-card-header class="ion-text-center">
+                <ion-label>{{partido.equipoLocal.nombre}} : {{partido.equipoVisitante.nombre}}</ion-label>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-row>
+                    <ion-col class="ion-text-center" >
+                        <ion-label>{{partido.golesEquipoLocal}}:{{partido.golesEquipoVisitante}}</ion-label>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+    </ion-content>
+    <ion-content *ngIf="estado==='clasificacion'">
+        <ion-label>Jornada {{numeroJornada+1}}</ion-label>
+        <ion-row class="ion-text-center">
+            <ion-col>Puesto</ion-col>
+            <ion-col>Equipo</ion-col>
+            <ion-col>Puntos</ion-col>
+            <ion-col>Goles Favor</ion-col>
+            <ion-col>Goles Contra</ion-col>
+        </ion-row>
+        <ion-row [ngClass]="{'morado':esMorado(equipo.posicion),'celeste':esCeleste(equipo.posicion)}" class="ion-text-center" *ngFor="let equipo of getClasificacion(numeroJornada).equipos">
+            <ion-col>{{equipo.posicion}}</ion-col>
+            <ion-col>{{equipo.nombre}}</ion-col>
+            <ion-col>{{equipo.puntos}}</ion-col>
+            <ion-col>{{equipo.golesFavor}}</ion-col>
+            <ion-col>{{equipo.golesContra}}</ion-col>
+        </ion-row>
+    </ion-content>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+      <ion-row>
+        <ion-col>
+        <ion-button size="large" class="ion-float-end" (click)="retrocederJornadas()">Anterior</ion-button>
+        </ion-col>
+        <ion-col>
+        <ion-button size="large" class="ion-float-start" (click)="avanzarJornadas()">Siguiente</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+</ion-footer>

@@ -25,3 +25,23 @@
 #container a {
   text-decoration: none;
 }
+
+.morado{
+  background-color: #5d58e0;
+  ion-col{
+    color:black;
+  }
+}
+.celeste{
+  background-color: #3dc2ff;
+  ion-col{
+    color:white;
+  }
+}
+ion-card{
+  background-color: #6370ff;
+
+  ion-label{
+    color: black;
+  }
+}

@@ -17,7 +17,6 @@ export class Liga{
         this.iniciarLiga();
     }
 
-
     private iniciarLiga () {
         this._numeroVueltas = this._servicios.numeroVueltas;
         this._numeroEquipos = this._servicios.numeroEquipos;

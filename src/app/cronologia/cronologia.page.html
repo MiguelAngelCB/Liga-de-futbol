@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center">
+  <ion-item>
+    <ion-title>Cronologia</ion-title>
+    <ion-title class="ion-text-center">{{partido.equipoLocal.nombre}}</ion-title>
+    <ion-title class="ion-text-center">{{partido.equipoVisitante.nombre}}</ion-title>
+  </ion-item>
+  <ion-item>
+    <ion-grid>
+      <ion-col>
+        <ion-item *ngFor="let registro of partido.registroLocal.goles">
+          <ion-icon name="time-outline"></ion-icon>
+          <ion-label>min: </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-grid>
+    <ion-grid>
+      <ion-col>
+        <ion-item *ngFor="let registro of partido.registroLocal.goles">
+          <ion-item *ngIf="registro!=''">
+            <ion-icon name="football-outline"></ion-icon>
+            <ion-label>{{registro}}</ion-label>
+          </ion-item>
+        </ion-item>
+      </ion-col>
+    </ion-grid>
+    <ion-grid>
+      <ion-col>
+        <ion-item *ngFor="let registro of partido.registroVisitante.goles">
+          <ion-item *ngIf="registro!=''">
+            <ion-icon name="football-outline"></ion-icon>
+            <ion-label>{{registro}}</ion-label>
+          </ion-item>
+        </ion-item>
+      </ion-col>
+    </ion-grid>
+  </ion-item>
+</ion-content>
